@@ -6,12 +6,16 @@ import { PassportModule } from '@nestjs/passport';
 import { UsersModule } from '../users/users.module';
 import { JwtStrategy } from './jwt.strategy';
 
+/**
+ * Módulo de autenticação.
+ * Responsável por login, registro e estratégia JWT.
+ */
 @Module({
   imports: [
     UsersModule,
     PassportModule,
     JwtModule.register({
-      secret: 'secret',
+      secret: process.env.JWT_SECRET || 'default_jwt_secret',
       signOptions: { expiresIn: '1d' },
     }),
   ],

@@ -7,6 +7,12 @@ describe('UsersController', () => {
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       controllers: [UsersController],
+      providers: [
+        {
+          provide: 'UsersService',
+          useValue: {}, // You can mock methods as needed
+        },
+      ],
     }).compile();
 
     controller = module.get<UsersController>(UsersController);
